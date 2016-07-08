@@ -1,3 +1,4 @@
+
 **silex-rest-api-multi-lazyload**
 
 This is a SILEX based Rest API with module lazy load, it uses micro services and has authentication.
@@ -46,7 +47,7 @@ This rest API uses lazy loading for services, it has a Factory pattern implement
  'Content-Type: application/json'
  'x-token: your-auth-token'
 
-**## License**
+**## License ##**
 see LICENSE file.
 
 
@@ -69,7 +70,4 @@ see LICENSE file.
 
 
 I owe you the docs and unit tests, sorry, test writers are welcome!!, any questions just contact me.
-
-
-
 
