@@ -2,7 +2,7 @@
 **silex-rest-api-multi-lazyload**
 
 This is a SILEX based Rest API with module lazy load, it uses micro services and has authentication.
-It uses token authentication and is useful for Angularjs Applications.
+It uses token authentication and is useful for Angularjs Applications, it also uses Yandex service to translate strings for internationalization.
 
 This api can be used for exposing different web services, that means that every service can have its own workspace and database configuration,
 it is built in a modular fashion, where removing any part won't affect the whole functionality.
@@ -10,8 +10,8 @@ it is built in a modular fashion, where removing any part won't affect the whole
 For multiple API interfaces, just create a new dir:
 
 public2/
-    .htaccess
-    index.php
+	.htaccess
+	index.php
     
 **.htaccess file contents:**
     #Options -MultiViews
