@@ -34,12 +34,7 @@ class Authorization implements ServiceProviderInterface
      * @var array
      */
     public static $DEFAULT_ROLES = array(1 => '*', 2 => array('GET', 'POST'), 3 => array('GET'));
-
-    /**
-     * @var array
-     */
-    public static $EXEMPT_SERVICES = array('login');
-
+    
     /**
      *
      * @param \Silex\Application $app

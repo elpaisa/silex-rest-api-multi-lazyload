@@ -17,6 +17,7 @@ define("ROOT_PATH", __DIR__ . "/..");
 
 $app['log.level'] = \Monolog\Logger::ERROR;
 $app['debug'] = true;
+$app['require_authentication'] = true;
 $app['api.version'] = "v1";
 $app['api.endpoint'] = "/api";
 $app['db.config'] = array(
@@ -40,6 +41,11 @@ $app['global.config'] = array(
     'max_results'      => 1000
 );
 $app['route_workspace'] = 'Rest';
+
+/**
+ * Exempt services from authentication
+ */
+$app['exempt_services'] =  array('login');
 /**
  * Register any new services for endpoints
  * Composite class names like CamelCase, must be mapped to hyphens camel-case

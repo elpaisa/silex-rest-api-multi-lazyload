@@ -35,8 +35,10 @@ class Route
     }
     
     /**
+     * Builds and instantiates all micro service
+     * 
      * @param \Silex\Application $app
-     * @param                    $serviceName
+     * @param string             $serviceName
      * @return mixed
      */
     public static function service(Application $app, $serviceName)

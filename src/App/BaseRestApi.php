@@ -32,6 +32,8 @@ class BaseRestApi
     protected $db;
     
     /**
+     * User information, obtained from token authentication
+     * 
      * @var array
      */
     public $userInfo;
@@ -65,7 +67,10 @@ class BaseRestApi
     }
 
     /**
-     * Get an specified controller
+     * Get an specified controller by string name, this method loads the full micro service specified
+     * into the main $api object and returns the initialized controller, this is useful for service
+     * lazy load, once a controller has been initialized, it will be available throughout all the application,
+     * it will load only once.
      *
      * @param string $controllerName
      * @return mixed

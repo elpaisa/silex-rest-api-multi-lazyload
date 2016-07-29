@@ -38,6 +38,9 @@ class Routing
     }
 
     /**
+     * Gets a controller by the mappedClass name.
+     * i.e: Login will instantiate LoginController
+     *
      * @return object
      */
     private function getController()
@@ -56,6 +59,9 @@ class Routing
     }
 
     /**
+     * Register a new service by name.
+     * i.e: Login will map to LoginService
+     *
      * @return mixed
      */
     public function registerService()
@@ -72,7 +78,12 @@ class Routing
 
 
     /**
-     * Register the controller endpoints
+     * Register the controller endpoints, endpoints must be declared in the controller itself
+     * and will contain GET, POST, PUT, PATCH, specifications for methods, that will be
+     * available as API endpoints, be careful not expose undesired methods that are insecure
+     * or are thought to be private
+     *
+     * @return Object current registered service
      */
     public function register()
     {

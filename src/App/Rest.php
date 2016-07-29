@@ -70,7 +70,6 @@ final class Rest
             if ($request->getMethod() === "OPTIONS") {
                 $response = new Response();
                 #CORS PREFLIGHT enabled
-                #$response->headers->set("Access-Control-Allow-Origin", "*");
                 $response->headers->set("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
                 $response->headers->set("Access-Control-Allow-Headers", "Content-Type,X-Requested-With,x-token");
                 
@@ -80,11 +79,13 @@ final class Rest
             }
             
         }, Application::EARLY_EVENT);
-        
-        $this->api->before(function (Request $request) {
-            $this->api['authorization.service']->checkPermissions($request);
-        });
 
+        if ($this->api['require_authentication'] !== false) {
+            $this->api->before(function (Request $request) {
+                $this->api['authorization.service']->checkPermissions($request);
+            });
+        }
+      
         $this->api->after(function (Request $request, Response $response) {
             #CORS enabled
             $response->headers->set("Access-Control-Allow-Origin", "*");

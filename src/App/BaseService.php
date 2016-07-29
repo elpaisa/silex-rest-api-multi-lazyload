@@ -18,7 +18,8 @@ class BaseService extends BaseRestApi
 {
 
     /**
-     * This is the equivalent table Name in the database
+     * This is the equivalent table Name in the database, make sure all database tables
+     * use `id` as primary key column name, thats a must standard used by this api
      *
      * @var string
      */
@@ -83,7 +84,7 @@ class BaseService extends BaseRestApi
      * field
      * 
      * @param int $id
-     * @return mixed
+     * @return array
      */
     public function getByPK($id)
     {
@@ -99,6 +100,8 @@ class BaseService extends BaseRestApi
     }
 
     /**
+     * Fetches a raw query by the modelName string, default limit is 1000, for pagination use fetchAll method
+     * 
      * @return array
      */
     public function getAll()
@@ -134,7 +137,11 @@ class BaseService extends BaseRestApi
     }
 
     /**
-     * @return array
+     * Fetches all records by a given query, it uses pagination offsets, provided by the api,
+     * the default limit must be specified in the config file, returns an array with results array, 
+     * row count, query start offset, and end offset
+     * 
+     * @return array [array, int, int, int]
      */
     public function fetchAll($query)
     {
@@ -147,10 +154,12 @@ class BaseService extends BaseRestApi
     }
 
     /**
-     * Save a standard model into the specified table
+     * Save a standard model into the specified table, this uses the standard Doctrine Database abstraction layer
+     * library, for more information on save method, please refer to:
+     * http://www.doctrine-project.org/projects/dbal.html
      *
-     * @param string $modelName
-     * @param array $data
+     * @param string $modelName table name to save
+     * @param array $data data must have an associative array of column names => value
      * @return int
      * @throws \Exception
      */
@@ -168,9 +177,12 @@ class BaseService extends BaseRestApi
 
 
     /**
-     * Save a standard
+     * Save a standard model, this takes the current service model name `database table name`
+     * and saves its values provided in the array $data, this uses the standard Doctrine Database abstraction layer
+     * library, for more information on save method, please refer to:
+     * http://www.doctrine-project.org/projects/dbal.html
      *
-     * @param array $data
+     * @param array $data data must have an associative array of column names => value
      * @return int
      * @throws \Exception
      */
@@ -187,7 +199,9 @@ class BaseService extends BaseRestApi
     }
 
     /**
-     * Standard update method
+     * Standard update method, this uses the standard Doctrine Database abstraction layer
+     * library, for more information on save method, please refer to:
+     * http://www.doctrine-project.org/projects/dbal.html
      * 
      * @param int   $id
      * @param array $attributes
@@ -199,7 +213,9 @@ class BaseService extends BaseRestApi
     }
 
     /**
-     * Standard delete method
+     * Standard delete method, this uses the standard Doctrine Database abstraction layer
+     * library, for more information on save method, please refer to:
+     * http://www.doctrine-project.org/projects/dbal.html
      * 
      * @param int $id
      * @param string|bool $model base table

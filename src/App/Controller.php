@@ -38,10 +38,10 @@ abstract class Controller extends \App\BaseRestApi
     public $endpointName;
 
     /**
-     * Controller constructor.
+     * Controller constructor, $service param must use naming conventions provided in the config file
      *
      * @param Application $api
-     * @param             $service
+     * @param string      $service Service name used to describe the micro service in the application
      */
     public function __construct($api, $service)
     {
@@ -132,7 +132,9 @@ abstract class Controller extends \App\BaseRestApi
     }
 
     /**
-     * Get request params
+     * Get request params, gets an array of the php:input, the received request must have the service name as value
+     * i.e for LoginService: {login: ["username"=>"john_doe", "pass"=>"admin"]}, get request will take as param
+     * root login.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return mixed
