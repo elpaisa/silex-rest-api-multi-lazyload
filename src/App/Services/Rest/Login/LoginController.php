@@ -16,7 +16,7 @@
 namespace App\Services\Rest\Login;
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\HttpFoundation\JsonResponse;
+
 use Symfony\Component\HttpFoundation\Request;
 
 class LoginController extends \App\Controller
@@ -86,7 +86,7 @@ class LoginController extends \App\Controller
             throw new AccessDeniedHttpException(self::$AUTH_ERROR);
         }
 
-        return new JsonResponse(array('token' => $this->validateLogin($attributes, $request)));
+        return $this->response(array('token' => $this->validateLogin($attributes, $request)));
     }
 
     /**
@@ -172,6 +172,6 @@ class LoginController extends \App\Controller
         $phrases = $this->getDataFromRequest($request);
         $lang = $this->getController('language');
 
-        return new JsonResponse($lang->getPhrasesByList($phrases));
+        return $this->response($lang->getPhrasesByList($phrases));
     }
 }

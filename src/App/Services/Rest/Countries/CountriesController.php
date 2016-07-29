@@ -15,7 +15,6 @@
 
 namespace App\Services\Rest\Countries;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CountriesController extends \App\Controller
 {
@@ -45,7 +44,7 @@ class CountriesController extends \App\Controller
      */
     public function getStates($code)
     {
-        return new JsonResponse($this->service->getStatesByCountryCode($code));
+        return $this->response($this->service->getStatesByCountryCode($code));
     }
 
 }

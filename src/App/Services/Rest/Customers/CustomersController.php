@@ -15,7 +15,7 @@
 
 namespace App\Services\Rest\Customers;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
+
 use Symfony\Component\HttpFoundation\Request;
 
 class CustomersController extends \App\Controller
@@ -56,7 +56,7 @@ class CustomersController extends \App\Controller
      */
     public function getCustomersList()
     {
-        return new JsonResponse($this->service->getCustomersList());
+        return $this->response($this->service->getCustomersList());
     }
 
     /**
@@ -67,7 +67,7 @@ class CustomersController extends \App\Controller
      */
     public function getCustomerById($id)
     {
-        return new JsonResponse($this->service->getCustomerById($id));
+        return $this->response($this->service->getCustomerById($id));
     }
 
     /**
@@ -79,7 +79,7 @@ class CustomersController extends \App\Controller
     public function save(Request $request)
     {
 
-        return new JsonResponse($this->service->saveCustomer($this->getDataFromRequest($request)));
+        return $this->response($this->service->saveCustomer($this->getDataFromRequest($request)));
     }
 
     /**
@@ -92,7 +92,7 @@ class CustomersController extends \App\Controller
     public function update($id, Request $request)
     {
 
-        return new JsonResponse(
+        return $this->response(
             $this->service->updateCustomer($id, $this->getDataFromRequest($request))
         );
 
@@ -107,7 +107,7 @@ class CustomersController extends \App\Controller
      */
     public function search($term)
     {
-        return new JsonResponse($this->service->searchCustomers($term));
+        return $this->response($this->service->searchCustomers($term));
     }
 
 }

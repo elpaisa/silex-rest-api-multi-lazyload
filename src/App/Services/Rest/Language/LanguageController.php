@@ -15,7 +15,7 @@
 
 namespace App\Services\Rest\Language;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 use Yandex\Translate\Translator;
@@ -61,7 +61,7 @@ class LanguageController extends \App\Controller
     public function getPhrases(Request $request)
     {
         
-        return new JsonResponse($this->getPhrasesByList($this->getDataFromRequest($request)));
+        return $this->response($this->getPhrasesByList($this->getDataFromRequest($request)));
     }
     
     /**
@@ -94,7 +94,7 @@ class LanguageController extends \App\Controller
             $phrases[$phrase['var_name']] = $phrase['value'];
         }
 
-        return new JsonResponse($phrases);
+        return $this->response($phrases);
     }
     
     /**

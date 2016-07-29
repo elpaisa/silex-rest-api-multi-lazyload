@@ -38,6 +38,11 @@ abstract class Controller extends \App\BaseRestApi
     public $endpointName;
 
     /**
+     * @var Symfony\Component\HttpFoundation\JsonResponse
+     */
+    private $jsonResponse;
+
+    /**
      * Controller constructor, $service param must use naming conventions provided in the config file
      *
      * @param Application $api
@@ -142,6 +147,29 @@ abstract class Controller extends \App\BaseRestApi
     public function getDataFromRequest(Request $request)
     {
         return $request->request->get($this->endpointName);
+    }
+
+    /**
+     * Instantiates JsonResponse
+     */
+    private function setResponse()
+    {
+        if (!$this->jsonResponse) {
+            $this->jsonResponse = new JsonResponse();
+            $this->jsonResponse->setEncodingOptions(JSON_NUMERIC_CHECK);
+        }
+    }
+
+    /**
+     * @param array $data
+     * @return Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function response($data)
+    {
+        $this->setResponse();
+        $this->jsonResponse->setData($data);
+
+        return $this->jsonResponse;
     }
 
 }

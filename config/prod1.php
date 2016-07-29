@@ -45,16 +45,16 @@ $app['route_workspace'] = 'Rest';
 /**
  * Exempt services from authentication
  */
-$app['exempt_services'] =  array('login');
+$app['exempt_services'] = array('login');
 /**
  * Register any new services for endpoints
  * Composite class names like CamelCase, must be mapped to hyphens camel-case
  *
  */
 $app['route_mapping'] = array(
-    'countries'      => 'Countries',
-    'customers'      => 'Customers',
-    'language'       => 'Language',
-    'login'          => 'Login',
-    'users'          => 'Users'
+    'countries' => 'Countries',
+    'customers' => 'Customers',
+    'language'  => 'Language',
+    'login'     => 'Login',
+    'users'     => 'Users'
 );

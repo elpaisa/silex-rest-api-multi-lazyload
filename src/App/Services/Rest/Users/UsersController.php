@@ -15,7 +15,7 @@
 namespace App\Services\Rest\Users;
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\HttpFoundation\JsonResponse;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -67,7 +67,7 @@ class UsersController extends \App\Controller
             throw new NotFoundHttpException($this->lang('user_not_found'));
         }
 
-        return new JsonResponse($user);
+        return $this->response($user);
     }
 
     /**
@@ -77,7 +77,7 @@ class UsersController extends \App\Controller
      */
     public function getUsersList()
     {
-        return new JsonResponse($this->service->getUsersList());
+        return $this->response($this->service->getUsersList());
     }
 
     /**
@@ -94,7 +94,7 @@ class UsersController extends \App\Controller
             throw new BadRequestHttpException($this->lang('no_user_specified'));
         }
 
-        return new JsonResponse(array('exists' => $this->service->checkUser($attributes['username'])));
+        return $this->response(array('exists' => $this->service->checkUser($attributes['username'])));
     }
 
     /**
@@ -104,7 +104,7 @@ class UsersController extends \App\Controller
      */
     public function getRoles()
     {
-        return new JsonResponse($this->service->getRoles());
+        return $this->response($this->service->getRoles());
     }
 
     /**
@@ -112,7 +112,7 @@ class UsersController extends \App\Controller
      */
     public function getUsersByRole($id)
     {
-        return new JsonResponse($this->service->getUsersByRole($id));
+        return $this->response($this->service->getUsersByRole($id));
     }
 
     /**
@@ -146,7 +146,7 @@ class UsersController extends \App\Controller
             throw new BadRequestHttpException($this->lang('there_was_an_error_trying_to_save_user'));
         }
 
-        return new JsonResponse($this->service->getByUserId($id));
+        return $this->response($this->service->getByUserId($id));
     }
 
     /**
@@ -167,7 +167,7 @@ class UsersController extends \App\Controller
             $attributes['password'] = sha1($attributes['password']);
         }
 
-        return new JsonResponse($this->service->updateUser($id, $attributes));
+        return $this->response($this->service->updateUser($id, $attributes));
     }
 
 }
